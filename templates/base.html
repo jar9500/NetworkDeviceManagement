@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-icons-1.10.5/font/bootstrap-icons.min.css' %}">
+    <title>Network Device Management</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <header>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand text-uppercase fw-bold" href="#" id="navbar">
+                    <img src="{% static 'img/SMKN3Bekasi.png' %}" alt="Logo" width="55" height="55"
+                        class="d-inline-block align-text-center p-1">Network Device Management
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!-- end navbar -->
+
+    <!-- left sidebar -->
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="row flex-nowrap">
+                        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
+                            <div
+                                class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link align-middle px-0 text-white">
+                                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline ">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                            <i class="fs-4 bi bi-router"></i> <span class="ms-1 d-none d-sm-inline">Network Device</span> </a>
+                                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                            <li class="w-100">
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-list-task"> </i> 
+                                                    <span class="d-none d-sm-inline">Device List</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-plus-square"> </i> 
+                                                    <span class="d-none d-sm-inline">Add New Device</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                            <i class="fs-4 bi-gear"></i> <span class="ms-1 d-none d-sm-inline">Configuration</span></a>
+                                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                            <li class="w-100">
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-command"> </i> 
+                                                    <span class="d-none d-sm-inline">Auto Configuration</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-terminal"> </i> 
+                                                    <span class="d-none d-sm-inline">Terminal</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-check2-all"> </i> 
+                                                    <span class="d-none d-sm-inline">Verify Config</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+                                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Other</span> </a>
+                                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                            <li class="w-100">
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-journal-bookmark-fill"> </i> 
+                                                    <span class="d-none d-sm-inline">Log</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="nav-link px-0 text-white"><i class="fs-6 bi-arrow-clockwise"> </i> 
+                                                    <span class="d-none d-sm-inline">Backup</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End of Sidebar -->
+
+                        <!-- right content -->
+                        {% block content %}
+
+                        {% endblock %}
+                        <!--end of right content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'bootstrap-5.3.0-dist/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

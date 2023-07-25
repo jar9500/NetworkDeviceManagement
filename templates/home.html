@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col py-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-md-4">
+                <div class="card bg-success shadow h-10 py-2 my-5">
+                    <a href="" style="text-decoration:none;">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="text-xs text-light text-uppercase mb-1">Total Device
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-light">{{ all_devices }}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+                <div class="card bg-info shadow h-10 py-2 my-5">
+                    <a href="" style="text-decoration:none;">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="text-xs text-light text-uppercase mb-1">Total Vendor
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-light"> (sss)</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+                <div class="card bg-warning shadow h-10 py-2 my-5">
+                    <a href="" style="text-decoration:none;">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="text-xs text-light text-uppercase mb-1">Total Log
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-light"> (Log)</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
