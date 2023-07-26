@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col py-1">
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center mt-3">Device List</h3>
+            <hr>
+            <h6 class="fst-italic">Total Device: {{ total_devices }}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">IP Address</th>
+                        <th scope="col">Hostname</th>
+                        <th scope="col">Vendor</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for device in all_devices %}
+                    <tr>
+                        <td>{{ device.IP_address }}</td>
+                        <td>{{ device.hostname }}</td>
+                        <td>{{ device.vendor }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
