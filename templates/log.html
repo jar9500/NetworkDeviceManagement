@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col py-1">
+    <div class="container">
+        <div class="row">
+            <h3 class="text-center mt-3">Log List</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">Target Device</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for log in logs %}
+                        <tr>
+                            <td>{{log.target}}</td>
+                            <td>{{log.action}}</td>
+                            <td>{{log.status}}</td>
+                            <td>{{log.time}}</td>
+                            <td>{{log.message}}</td>
+                            <td><a href="/admin/NetworkManager/log/{{log.id}}/delete" class="d-none d-sm-inline-block btn btn-sm btn-danger"><i class="bi bi-trash text-white"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
