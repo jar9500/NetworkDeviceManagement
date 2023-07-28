@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.http import HttpResponse
 from .models import Device, Log
 import paramiko
+import os
 import time
 from datetime import datetime
 
@@ -49,11 +50,11 @@ def configuration(request):
                     for cmd in cisco_cmd:
                         conn.send(cmd+"\n")
                         time.sleep(1)
-                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Success", time=datetime.now(), message="Complete - No Error ")
-                log.save()'''
+                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Success", time=datetime.now(), message="Complete - No Error ")
+                log.save()
             except Exception as Exc:
-                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Error", time=datetime.now(), message=Exc)
-                log.save()'''
+                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Error", time=datetime.now(), message=Exc)
+                log.save()
         return redirect('home')
 
     else:
@@ -101,11 +102,11 @@ def verify(request):
                         time.sleep(5)
                         output = conn.recv(65535)
                         result.append (output.decode())
-                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Verify", status="Success", time=datetime.now(), message="Complete - No Error")
-                log.save()'''
+                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Verify", status="Success", time=datetime.now(), message="Complete - No Error")
+                log.save()
             except Exception as Exc:
-                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
-                log.save()'''
+                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
+                log.save()
 
         result = "\n".join(result)
         return render(request,'verifyResult.html',{"result":result})
@@ -126,3 +127,33 @@ def log(request):
         }
     
     return render(request, 'log.html', context)
+
+def saveconfig(request):
+    time_now = datetime.today().strftime("%d-%m-%Y-%H:%M:%S")
+    if request.method == 'POST':
+        selected_device_id = request.POST.getlist('device')
+        for x in selected_device_id:
+            dev = get_object_or_404(Device, pk=x)
+            ssh_client = paramiko.SSHClient()
+            ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password)
+            try:    
+                if dev.vendor.lower() == 'mikrotik':
+                    stdin, stdout, stderr = ssh_client.exec_command("export file= Backup "+ time_now)
+                else:
+                    conn = ssh_client.invoke_shell()
+                    conn.send("copy running-config startup-config \n")
+                    time.sleep(5)
+                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Save Config", status="Success", time=datetime.now(), message="Complete - No Error ")
+                log.save()
+            except Exception as Exc:
+                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Save Config", status="Error", time=datetime.now(), message=Exc)
+                log.save()
+        return redirect('home')
+
+    else:
+        devices = Device.objects.all()
+        context = {
+            'devices': devices,
+        }
+        return render(request, 'saveconfig.html', context)
