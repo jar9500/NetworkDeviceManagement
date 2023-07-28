@@ -49,11 +49,11 @@ def configuration(request):
                     for cmd in cisco_cmd:
                         conn.send(cmd+"\n")
                         time.sleep(1)
-                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Success", time=datetime.now(), message="Complete - No Error ")
-                log.save()
+                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Success", time=datetime.now(), message="Complete - No Error ")
+                log.save()'''
             except Exception as Exc:
-                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Error", time=datetime.now(), message=Exc)
-                log.save()
+                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Configuration", status="Error", time=datetime.now(), message=Exc)
+                log.save()'''
         return redirect('home')
 
     else:
@@ -92,20 +92,20 @@ def verify(request):
                     for ciscoselect in cisco_verify_select:
                         result.append("Result on {}".format(dev.IP_address))
                         conn.send(ciscoselect+"\n")
-                        time.sleep(1)
+                        time.sleep(5)
                         output = conn.recv(65535)
                         result.append (output.decode())
                     for ciscocmd in cisco_verify_cmd:
                         result.append("Result on {}".format(dev.IP_address))
                         conn.send(ciscocmd+"\n")
-                        time.sleep(1)
+                        time.sleep(5)
                         output = conn.recv(65535)
                         result.append (output.decode())
-                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Verify", status="Success", time=datetime.now(), message="Complete - No Error")
-                log.save()
+                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Verify", status="Success", time=datetime.now(), message="Complete - No Error")
+                log.save()'''
             except Exception as Exc:
-                log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
-                log.save()
+                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
+                log.save()'''
 
         result = "\n".join(result)
         return render(request,'verifyResult.html',{"result":result})
