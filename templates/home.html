@@ -22,9 +22,9 @@
                     <a href="" style="text-decoration:none;">
                         <div class="card-body">
                             <div class="row align-items-center">
-                                <div class="text-xs text-light text-uppercase mb-1">Total Vendor
+                                <div class="text-xs text-light text-uppercase mb-1">Mikrotik Device
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-light"> (Vendor)</div>
+                                <div class="h5 mb-0 font-weight-bold text-light">{{ mikrotik_device }}</div>
                             </div>
                         </div>
                     </a>
@@ -35,15 +35,41 @@
                     <a href="" style="text-decoration:none;">
                         <div class="card-body">
                             <div class="row align-items-center">
-                                <div class="text-xs text-light text-uppercase mb-1">Total Log
+                                <div class="text-xs text-light text-uppercase mb-1">Cisco Device
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-light"> (Log)</div>
+                                <div class="h5 mb-0 font-weight-bold text-light">{{ cisco_device }}</div>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <h3 class="text-center mt-3">Recent Event</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">Time</th>
+                            <th scope="col">Target Device</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for log in recent_event %}
+                        <tr>
+                            <td>{{log.time}}</td>
+                            <td>{{log.target}}</td>
+                            <td>{{log.action}}</td>
+                            <td>{{log.status}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
 {% endblock content %}

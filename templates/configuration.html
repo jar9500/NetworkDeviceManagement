@@ -4,7 +4,7 @@
 <div class="col py-1">
     <div class="container ">
         <div class="row">
-            <h3 class="text-center mt-3">{{mode}}</h3>
+            <h3 class="text-center mt-3">Configuration Terminal</h3>
             <hr>
             <h6>Choose target:</h6>
             <form method="POST">
@@ -23,16 +23,16 @@
                 {% endfor %}
             </div>
             <h6 class="mt-3">Choose Terminal:</h6>
-                <a class="my-2 btn btn-outline-success" data-bs-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false">Mikrotik Command</a>
-                <button class="my-2 btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#Collapse2" aria-expanded="false">Cisco Command</button>
+                <a class="my-2 btn btn-outline-success" data-bs-toggle="collapse" href="#Mikrotik" role="button" aria-expanded="false">Mikrotik Command</a>
+                <button class="my-2 btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#Cisco" aria-expanded="false">Cisco Command</button>
                     <div class="col">
-                        <div class="collapse multi-collapse" id="Collapse1">
-                            <textarea class="form-control my-2 border-success" rows="4" name="mikrotik_cmd">{{ mikrotik_verify }}</textarea>
+                        <div class="collapse multi-collapse" id="Mikrotik">
+                            <textarea class="form-control my-2 border-success" rows="4" name="mikrotik_cmd"></textarea>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="collapse multi-collapse" id="Collapse2">
-                            <textarea class="form-control my-2 border-danger" rows="4" name="cisco_cmd">{{ cisco_verify }}</textarea>
+                        <div class="collapse multi-collapse" id="Cisco">
+                            <textarea class="form-control my-2 border-danger" rows="4" name="cisco_cmd"></textarea>
                         </div>
                     </div>
                     <hr>
