@@ -5,10 +5,9 @@
         <div class="row">
             <h3 class="text-center mt-3">Device List</h3>
             <hr>
-            <h6 class="fst-italic">Total Device: {{ total_devices }}</h6>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-bordered table-hover" id="responsive-table">
                 <thead>
                     <tr class="table-dark">
                         <th scope="col">IP Address</th>
@@ -26,7 +25,7 @@
                         <td>{{ device.device_type }}</td>
                         <td>{{ device.vendor }}</td>
                         <td>
-                            <a href="/admin/NetworkManager/device/{{device.id}}/change" class="d-none d-sm-inline-block btn btn-sm btn-danger"><i class="bi bi-pencil-square text-white"></i></a>
+                            <a href="/admin/NetworkManager/device/{{device.id}}/change" class="d-none d-sm-inline-block btn btn-sm btn-success"><i class="bi bi-pencil-square text-white"></i></a>
                             <a href="/admin/NetworkManager/device/{{device.id}}/delete" class="d-none d-sm-inline-block btn btn-sm btn-danger"><i class="bi bi-trash text-white"></i></a>
                         </td>
                     </tr>
