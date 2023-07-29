@@ -61,32 +61,23 @@
                                             <i class="fs-4 bi-gear"></i> <span class="ms-1 d-none d-sm-inline">Configuration</span></a>
                                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                                             <li class="w-100">
-                                                <a href="#" class="nav-link px-0 text-light"><i class="fs-6 bi-command"> </i> 
-                                                    <span class="d-none d-sm-inline">Auto Configuration</span></a>
-                                            </li>
-                                            <li>
                                                 <a href="{% url 'configuration' %}" class="nav-link px-0 text-light"><i class="fs-6 bi-terminal"> </i> 
-                                                    <span class="d-none d-sm-inline">Terminal</span></a>
+                                                    <span class="ms-1 d-none d-sm-inline">Terminal</span></a>
                                             </li>
                                             <li>
                                                 <a href="{% url 'verify' %}" class="nav-link px-0 text-light"><i class="fs-6 bi-check2-all"> </i> 
-                                                    <span class="d-none d-sm-inline">Verify Config</span></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
-                                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Other</span> </a>
-                                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                                            <li class="w-100">
-                                                <a href="{% url 'log' %}" class="nav-link px-0 text-light"><i class="fs-6 bi-journal-bookmark-fill"> </i> 
-                                                    <span class="d-none d-sm-inline">Log</span></a>
+                                                    <span class="ms-1 d-none d-sm-inline">Verify Configuration</span></a>
                                             </li>
                                             <li>
                                                 <a href="{% url 'saveconfig' %}" class="nav-link px-0 text-light"><i class="fs-6 bi-save"> </i> 
-                                                    <span class="d-none d-sm-inline">Save Configuration</span></a>
+                                                    <span class="ms-1 d-none d-sm-inline">Save Configuration</span></a>
                                             </li>
                                         </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{% url 'log' %}" class="nav-link align-middle px-0 text-light">
+                                            <i class="fs-4 bi-journal-bookmark-fill"></i> <span class="ms-1 d-none d-sm-inline ">Log</span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
