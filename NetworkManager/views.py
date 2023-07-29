@@ -128,31 +128,42 @@ def log(request):
     return render(request, 'log.html', context)
 
 def saveconfig(request):
-    time_now = datetime.today().strftime("%d-%m-%Y-%H:%M:%S")
+    timenow = datetime.today().strftime("%d-%m-%Y,%H:%M:%S")
     if request.method == 'POST':
+        result = []
         selected_device_id = request.POST.getlist('device')
         for x in selected_device_id:
             dev = get_object_or_404(Device, pk=x)
             ssh_client = paramiko.SSHClient()
             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password)
-            try:    
+            try:
                 if dev.vendor.lower() == 'mikrotik':
-                    stdin, stdout, stderr = ssh_client.exec_command("export file= Backup "+ time_now)
+                    stdin, stdout, stderr = ssh_client.exec_command("export file= Backup-" + timenow)
+                    stdin, stdout, stderr = ssh_client.exec_command("file print")
+                    result.append("Result on {}".format(dev.IP_address))
+                    result.append(stdout.read().decode())
                 else:
                     conn = ssh_client.invoke_shell()
+                    conn.send("terminal length 0\n")
+                    result.append("Result on {}".format(dev.IP_address))
                     conn.send("copy running-config startup-config \n\n")
                     time.sleep(5)
-                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Save Config", status="Success", time=datetime.now(), message="Complete - No Error ")
+                    output = conn.recv(65535)
+                    result.append (output.decode())
+                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Verify", status="Success", time=datetime.now(), message="Complete - No Error")
                 log.save()'''
             except Exception as Exc:
-                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) ", action="Save Config", status="Error", time=datetime.now(), message=Exc)
+                '''log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
                 log.save()'''
-        return redirect('home')
 
+        result = "\n".join(result)
+        return render(request,'verifyResult.html',{"result":result})
+    
     else:
         devices = Device.objects.all()
         context = {
             'devices': devices,
         }
-        return render(request, 'saveconfig.html', context)
+    
+    return render(request, 'saveconfig.html', context)
