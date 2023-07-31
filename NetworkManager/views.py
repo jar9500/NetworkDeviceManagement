@@ -4,7 +4,9 @@ from .models import Device, Log
 import paramiko
 import time
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def home(request):
     all_devices = Device.objects.all()
     cisco_device = Device.objects.filter(vendor='cisco')
@@ -19,6 +21,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+@login_required
 def devices(request):
     all_devices = Device.objects.all()
 
@@ -29,6 +32,7 @@ def devices(request):
 
     return render(request, 'devices.html', context)
 
+@login_required
 def configuration(request):
     if request.method == 'POST':
         selected_device_id = request.POST.getlist('device')
@@ -63,6 +67,7 @@ def configuration(request):
         }
         return render(request, 'configuration.html', context)
 
+@login_required
 def verify(request):
     if request.method == 'POST':
         result = []
@@ -118,6 +123,7 @@ def verify(request):
     
     return render(request, 'verify.html', context)
 
+@login_required
 def log(request):
     logs = Log.objects.all()
 
@@ -127,6 +133,7 @@ def log(request):
     
     return render(request, 'log.html', context)
 
+@login_required
 def saveconfig(request):
     timenow = datetime.today().strftime("%d-%m-%Y,%H:%M:%S")
     if request.method == 'POST':
