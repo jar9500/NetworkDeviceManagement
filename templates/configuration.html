@@ -6,33 +6,33 @@
         <div class="row">
             <h3 class="text-center mt-3">Configuration Terminal</h3>
             <hr>
-            <h6>Choose target:</h6>
+            <h6 class="mb-3">Select Target:</h6>
             <form method="POST">
             {% csrf_token %}
             <div class="row">
                 {% for device in devices %}
-                <div class="col-xl-4">
-                    <div class="card my-2 border-dark">
-                        <div class="card-body">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="device" value="{{ device.id }}"> {{device.vendor}} | {{device.IP_address}} - {{device.hostname}}
+                <div class="col-auto">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text text-capitalize">
+                                <input class="form-check-input" type="checkbox" name="device" value="{{ device.id }}">&nbsp;{{device.vendor}} | {{device.IP_address}} - {{device.hostname}}
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            <h6 class="mt-3">Choose Terminal:</h6>
-                <a class="my-2 btn btn-outline-success" data-bs-toggle="collapse" href="#Mikrotik" role="button" aria-expanded="false">Mikrotik Command</a>
-                <button class="my-2 btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#Cisco" aria-expanded="false">Cisco Command</button>
+            <h6 class="mb-3">Select Terminal:</h6>
+                <a class="mb-3 btn btn-outline-success" data-bs-toggle="collapse" href="#Mikrotik" role="button" aria-expanded="false">Mikrotik Command</a>
+                <button class="mb-3 btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#Cisco" aria-expanded="false">Cisco Command</button>
                     <div class="col">
                         <div class="collapse multi-collapse" id="Mikrotik">
-                            <textarea class="form-control my-2 border-success" rows="4" name="mikrotik_cmd"></textarea>
+                            <textarea class="form-control mb-2 border-success" rows="3" name="mikrotik_cmd"></textarea>
                         </div>
                     </div>
                     <div class="col">
                         <div class="collapse multi-collapse" id="Cisco">
-                            <textarea class="form-control my-2 border-danger" rows="4" name="cisco_cmd"></textarea>
+                            <textarea class="form-control my-2 border-danger" rows="3" name="cisco_cmd"></textarea>
                         </div>
                     </div>
                     <hr>
