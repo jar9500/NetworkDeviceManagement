@@ -111,26 +111,22 @@ def verify(request):
             except Exception as Exc:
                 log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
                 log.save()
-
         result = "\n".join(result)
         return render(request,'verifyResult.html',{"result":result})
-    
     else:
         devices = Device.objects.all()
         context = {
             'devices': devices,
         }
-    
-    return render(request, 'verify.html', context)
+        return render(request, 'verify.html', context)
+
 
 @login_required
 def log(request):
     logs = Log.objects.all()
-
     context = {
             'logs': logs
         }
-    
     return render(request, 'log.html', context)
 
 @login_required
@@ -163,7 +159,6 @@ def saveconfig(request):
             except Exception as Exc:
                 log = Log(target=dev.IP_address + " ( " +dev.hostname+" ) " , action="Verify", status="Error", time=datetime.now(), message=Exc)
                 log.save()
-
         result = "\n".join(result)
         return render(request,'verifyResult.html',{"result":result})
     
@@ -172,5 +167,4 @@ def saveconfig(request):
         context = {
             'devices': devices,
         }
-    
-    return render(request, 'saveconfig.html', context)
+        return render(request, 'saveconfig.html', context)
