@@ -42,7 +42,7 @@ def configuration(request):
             dev = get_object_or_404(Device, pk=x)
             ssh_client = paramiko.SSHClient()
             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password)
+            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password, port=dev.SSH_port)
             try:    
                 if dev.vendor.lower() == 'mikrotik':
                     for cmd in mikrotik_cmd:
@@ -80,7 +80,7 @@ def verify(request):
             dev = get_object_or_404(Device, pk=x)
             ssh_client = paramiko.SSHClient()
             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password)
+            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password, port=dev.SSH_port)
             try:
                 if dev.vendor.lower() == 'mikrotik':
                     for mikrotikselect in mikrotik_verify_select:
@@ -139,7 +139,7 @@ def saveconfig(request):
             dev = get_object_or_404(Device, pk=x)
             ssh_client = paramiko.SSHClient()
             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password)
+            ssh_client.connect(hostname=dev.IP_address, username=dev.username, password=dev.password, port=dev.SSH_port)
             try:
                 if dev.vendor.lower() == 'mikrotik':
                     stdin, stdout, stderr = ssh_client.exec_command("export file= Backup-" + timenow)
